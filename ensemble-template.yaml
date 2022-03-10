@@ -5,7 +5,16 @@ apiVersion: unfurl/v1alpha1
 spec:
   service_template:
     topology_template:
-      node_templates: {}
+      node_templates: 
+        test_remote:
+          type: tosca:Root
+          interfaces:
+            Standard:
+              configure:
+                implementation: Ansible
+                inputs: 
+                  inventory: "inventory.txt"
+                  playbook: "udit_playbook.yml"
 
         # # this is an example of a minimal node template
         # # it is essentially defining an untyped node
