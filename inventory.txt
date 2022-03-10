@@ -1,0 +1,9 @@
+[local_VM]
+192.168.101.7 ansible_ssh_user=root  ansible_ssh_password=redhat ansible_ssh_common_args='-o StrictHostKeyChecking=no'
+
+[aws_instances]
+65.2.123.226 ansible_ssh_user=ec2-user  ansible_ssh_private_key_file=/root/mumbaikey.pem  ansible_become=yes  
+65.1.94.243  ansible_ssh_user=ec2-user  ansible_ssh_private_key_file=/root/mumbaikey.pem  ansible_become=yes
+3.7.69.40    ansible_ssh_user=ec2-user  ansible_ssh_private_key_file=/root/mumbaikey.pem  ansible_become=yes
+
+

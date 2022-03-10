@@ -1,0 +1,40 @@
+- hosts: local_VM
+  tasks:
+    - name: Check if docker-ce is installed or not.
+      command: "rpm -q docker-ce"
+      register: check
+      ignore_errors: True
+
+    - name: Configuring docker repo on target node(s).
+      yum_repository:
+        name: "docker1234"
+        baseurl: "https://download.docker.com/linux/centos/7/x86_64/stable"
+        description: "docker repository"
+        gpgcheck: no
+      when: check.rc !=0
+
+    - name: Intsalling docker-ce
+      command: "yum install docker-ce --nobest -y"
+      when: check.rc != 0
+
+    - name: Starting Docker services
+      service: 
+        name: docker
+        state: started
+        enabled: yes
+
+    - name: Pull an unfurl image from docker.io.
+      docker_image:
+       name: "onecommons/unfurl" 
+       source: pull
+       tag: latest
+  
+    - name: Launching and exposing container.
+      docker_container:
+        name: ansibleTest_Unfurl
+        image: "onecommons/unfurl"
+        state: started
+        tty: yes
+        interactive: yes
+        detach: yes
+      

@@ -13,8 +13,8 @@ spec:
               configure:
                 implementation: Ansible
                 inputs: 
-                  inventory: "inventory.txt"
-                  playbook: "udit_playbook.yml"
+                  inventory: "/root/devops_assignment/inventory.txt"
+                  playbook: "/root/devops_assignment/udit_playbook.yml"
 
         # # this is an example of a minimal node template
         # # it is essentially defining an untyped node
